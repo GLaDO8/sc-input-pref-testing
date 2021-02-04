@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./index.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="app mx-auto max-w-sm mt-16">
+        <header>
+          <div className="wrapper">
+            <h1 className="text-2xl font-bold">Input Form A/B Testing</h1>
+          </div>
+        </header>
+        <div className="container mt-48">
+          <section className="add-item">
+            <form>
+              <input
+                className="m-4 p-2 border-2 rounded-lg"
+                type="text"
+                name="username"
+                placeholder="What's your name?"
+              />
+              <button className="text-white bg-black py-2 px-6 rounded-lg">
+                Next
+              </button>
+            </form>
+          </section>
+        </div>
+      </div>
+    );
+  }
 }
-
 export default App;
