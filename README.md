@@ -1,6 +1,6 @@
 # Screen Time Input Preference feedback - Master's Thesis Study
 
-## NOTE - Website currently being built
+**NOTE - Website currently being built**
 
 We are trying to understand what kind of input methods do people
 prefer when reporting their screen time on their smartphones. This
