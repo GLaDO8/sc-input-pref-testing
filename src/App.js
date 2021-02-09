@@ -155,7 +155,7 @@ class App extends Component {
           </div>
           <div className="rounded-lg bg-white shadow-lg p-4">
             <h2 className="text-xl font-medium mb-4">
-              Question Type 3 (open-ended text field)
+              Question Type 4 (semi open-ended text field)
             </h2>
             <form>
               <div className="mb-8">
@@ -163,18 +163,40 @@ class App extends Component {
                   How much time in a day do you spend on your smartphone?
                 </label>
               </div>
-              <input
-                type="text"
-                className="bg-gray-100 rounded-lg p-2 border-gray-200 border-2"
-                placeholder="Eg: 2 Hour 35 Minutes"
-                // onChange={this.handleChange}
-                // value={this.state.q3options}
-              />
+              <div className="flex flex-row items-center">
+                <label for="hour">Hours</label>
+                <input
+                  type="text"
+                  className="bg-gray-100 rounded-lg p-2 border-gray-200 border-2 w-10 m-1 mr-4"
+                  placeholder="2"
+                  // onChange={this.handleChange}
+                  // value={this.state.q3options}
+                />
+                <label for="minute">Minutes</label>
+                <input
+                  type="text"
+                  className="bg-gray-100 rounded-lg p-2 border-gray-200 border-2 w-10 m-1"
+                  placeholder="34"
+                  // onChange={this.handleChange}
+                  // value={this.state.q3options}
+                />
+              </div>
             </form>
           </div>
           <div className="rounded-lg bg-white shadow-lg p-4">
             <h2 className="text-xl font-medium mb-4">
-              Question Type 5 (Slider-type input)
+              Question Type 5 (Segmented slider-type input)
+            </h2>
+            <Slider
+              min={0}
+              max={120}
+              // value={this.state.q5slidervalue}
+              // onChange={this.onSliderChange}
+            />
+          </div>
+          <div className="rounded-lg bg-white shadow-lg p-4">
+            <h2 className="text-xl font-medium mb-4">
+              Question Type 6 (Slider-type input)
             </h2>
             <Slider
               min={0}
