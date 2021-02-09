@@ -310,6 +310,11 @@ class App extends Component {
             </select>
           </div>
         </div>
+        <div className="mb-24">
+          <button className="bg-black text-white p-2 px-4 rounded-lg">
+            Submit
+          </button>
+        </div>
       </div>
     );
   }
