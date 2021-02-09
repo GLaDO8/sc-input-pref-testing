@@ -1,28 +1,25 @@
 import React, { Component } from "react";
 import "./index.css";
+import Pageone from "./page1";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="app mx-auto max-w-sm mt-16">
+      <div className="mx-auto max-w-3xl mt-16">
         <header>
-          <div className="wrapper">
+          <div>
             <h1 className="text-2xl font-bold">Input Form A/B Testing</h1>
           </div>
         </header>
         <div className="container mt-48">
           <section className="add-item">
-            <form>
-              <input
-                className="m-4 p-2 border-2 rounded-lg"
-                type="text"
-                name="username"
-                placeholder="What's your name?"
-              />
+            <BrowserRouter>
               <button className="text-white bg-black py-2 px-6 rounded-lg">
-                Next
+                <Link to="/page1">Next</Link>
               </button>
-            </form>
+              <Route path="/page1" component={Pageone} />
+            </BrowserRouter>
           </section>
         </div>
       </div>
