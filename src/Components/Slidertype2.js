@@ -11,10 +11,6 @@ function screenTimeFormatter(v) {
   return `${hours} Hours, ${mins} Minutes`;
 }
 
-function log(value) {
-  console.log(value); //eslint-disable-line
-}
-
 class Slidertype2 extends Component {
   state = { sliderValue: 0 };
   handleChange = (sliderValue) => {
