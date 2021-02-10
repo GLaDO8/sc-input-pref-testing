@@ -4,7 +4,10 @@ import Qchoicetype1 from "./Components/Qchoicetype1";
 import Qchoicetype2 from "./Components/Qchoicetype2";
 import Slidertype1 from "./Components/Slidertype1";
 import Slidertype2 from "./Components/Slidertype2";
+import Opentype from "./Components/Opentype";
 import Firebase from "./firebase";
+
+function threeQuestions(state) {}
 
 class App extends Component {
   constructor() {
@@ -12,11 +15,15 @@ class App extends Component {
     this.state = {
       sliderPref: "",
       mcqPref: "",
+      overAllPref: "",
     };
     this.onSliderValueChange = this.onSliderValueChange.bind(this);
     this.onMcqValueChange = this.onMcqValueChange.bind(this);
+    this.onOverallValueChange = this.onOverallValueChange.bind(this);
+
     this.formSubmit = this.formSubmit.bind(this);
     this.mcqFormSubmit = this.mcqFormSubmit.bind(this);
+    this.finalFormSubmit = this.finalFormSubmit.bind(this);
   }
   onSliderValueChange(event) {
     this.setState({
@@ -28,25 +35,45 @@ class App extends Component {
       mcqPref: event.target.value,
     });
   }
+  onOverallValueChange(event) {
+    this.setState({
+      overAllPref: event.target.value,
+    });
+  }
+  finalFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.overAllPref);
+    const itemsRef = Firebase.database().ref("preferences");
+    const Preferences = {
+      mcqChoice: this.state.mcqPref,
+      sliderChoice: this.state.sliderPref,
+      finalChoice: this.state.overAllPref,
+    };
+    itemsRef.push(Preferences);
+  }
   mcqFormSubmit(event) {
     event.preventDefault();
     console.log(this.state.mcqPref);
-    const itemsRef = Firebase.database().ref("preferences");
-    const mcqPreferences = {
-      mcqChoice: this.state.mcqPref,
-    };
-    itemsRef.push(mcqPreferences);
   }
   formSubmit(event) {
     event.preventDefault();
     console.log(this.state.sliderPref);
-    const itemsRef = Firebase.database().ref("preferences");
-    const sliderPreferences = {
-      sliderChoice: this.state.sliderPref,
-    };
-    itemsRef.push(sliderPreferences);
   }
   render() {
+    const mcqChoice = this.state.mcqPref;
+    const sliderChoice = this.state.sliderPref;
+    let mcqComponent, sliderComponent;
+    if (mcqChoice === "mcq style 1") {
+      mcqComponent = <Qchoicetype1 />;
+    } else {
+      mcqComponent = <Qchoicetype2 />;
+    }
+
+    if (sliderChoice === "Slider Style 1") {
+      sliderComponent = <Slidertype1 />;
+    } else {
+      sliderComponent = <Slidertype2 />;
+    }
     return (
       <div className="mx-auto max-w-4xl mt-16">
         <header>
@@ -106,7 +133,6 @@ class App extends Component {
             <button
               className="bg-black text-white p-2 px-4 rounded-lg"
               type="submit"
-              onclick="submitForm()"
             >
               Submit
             </button>
@@ -138,6 +164,46 @@ class App extends Component {
             onChange={this.onSliderValueChange}
           />
           <label>Slider Style 2</label>
+          <button
+            className="bg-black text-white p-2 px-4 rounded-lg"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
+          <div>{mcqComponent}</div>
+          <div>{sliderComponent}</div>
+          <div>
+            <Opentype />
+          </div>
+        </div>
+        <form onSubmit={this.finalFormSubmit}>
+          <input
+            type="radio"
+            name="pref1"
+            value="MCQ Style"
+            checked={this.state.overAllPref === "MCQ Style"}
+            onChange={this.onOverallValueChange}
+          />
+          <label>MCQ Style</label>
+          <input
+            type="radio"
+            name="pref1"
+            value="Slider Style"
+            checked={this.state.overAllPref === "Slider Style"}
+            onChange={this.onOverallValueChange}
+          />
+          <label>Slider Style</label>
+          <input
+            type="radio"
+            name="pref1"
+            value="Open Style"
+            checked={this.state.overAllPref === "Open Style"}
+            onChange={this.onOverallValueChange}
+          />
+          <label>Open Style</label>
           <button
             className="bg-black text-white p-2 px-4 rounded-lg"
             type="submit"
