@@ -4,13 +4,47 @@ import Qchoicetype1 from "./Components/Qchoicetype1";
 import Qchoicetype2 from "./Components/Qchoicetype2";
 import Slidertype1 from "./Components/Slidertype1";
 import Slidertype2 from "./Components/Slidertype2";
+import Firebase from "./firebase";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      q1preference: "",
+      sliderPref: "",
+      mcqPref: "",
     };
+    this.onSliderValueChange = this.onSliderValueChange.bind(this);
+    this.onMcqValueChange = this.onMcqValueChange.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+    this.mcqFormSubmit = this.mcqFormSubmit.bind(this);
+  }
+  onSliderValueChange(event) {
+    this.setState({
+      sliderPref: event.target.value,
+    });
+  }
+  onMcqValueChange(event) {
+    this.setState({
+      mcqPref: event.target.value,
+    });
+  }
+  mcqFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.mcqPref);
+    const itemsRef = Firebase.database().ref("preferences");
+    const mcqPreferences = {
+      mcqChoice: this.state.mcqPref,
+    };
+    itemsRef.push(mcqPreferences);
+  }
+  formSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.sliderPref);
+    const itemsRef = Firebase.database().ref("preferences");
+    const sliderPreferences = {
+      sliderChoice: this.state.sliderPref,
+    };
+    itemsRef.push(sliderPreferences);
   }
   render() {
     return (
@@ -52,58 +86,65 @@ class App extends Component {
           <Qchoicetype2 />
         </div>
         <div className="flex flex-row mx-auto max-w-4xl">
-          <form>
+          <form onSubmit={this.mcqFormSubmit}>
             <input
               type="radio"
-              id="preference1"
               name="pref1"
               value="mcq style 1"
-              className="rounded-lg p-2 bg-gray-100 border-gray-200 border-2"
-              // onChange={this.handleChange}
-              // value={this.state.username}
+              checked={this.state.mcqPref === "mcq style 1"}
+              onChange={this.onMcqValueChange}
             />
             <label for="male">mcq style 1</label>
             <input
               type="radio"
-              id="preference2"
               name="pref1"
               value="mcq style 2"
-              className="rounded-lg p-2 bg-gray-100 border-gray-200 border-2"
+              checked={this.state.mcqPref === "mcq style 2"}
+              onChange={this.onMcqValueChange}
             />
             <label for="male">mcq style 2</label>
+            <button
+              className="bg-black text-white p-2 px-4 rounded-lg"
+              type="submit"
+              onclick="submitForm()"
+            >
+              Submit
+            </button>
           </form>
+        </div>
+
+        <div className="font-medium text-xl mx-auto max-w-4xl mt-24">
+          <h3>Which of these two questions types do you prefer? </h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
           <Slidertype1 />
           <Slidertype2 />
         </div>
-        <div className="flex flex-row mx-auto max-w-4xl">
-          <form>
-            <input
-              type="radio"
-              id="preference1"
-              name="pref1"
-              value="mcq style 1"
-              className="rounded-lg p-2 bg-gray-100 border-gray-200 border-2"
-              // onChange={this.handleChange}
-              // value={this.state.username}
-            />
-            <label for="male">mcq style 1</label>
-            <input
-              type="radio"
-              id="preference2"
-              name="pref1"
-              value="mcq style 2"
-              className="rounded-lg p-2 bg-gray-100 border-gray-200 border-2"
-            />
-            <label for="male">mcq style 2</label>
-          </form>
-        </div>
-        <div className="mb-24">
-          <button className="bg-black text-white p-2 px-4 rounded-lg">
+
+        <form onSubmit={this.formSubmit}>
+          <input
+            type="radio"
+            name="pref1"
+            value="Slider Style 1"
+            checked={this.state.sliderPref === "Slider Style 1"}
+            onChange={this.onSliderValueChange}
+          />
+          <label>Slider Style 1</label>
+          <input
+            type="radio"
+            name="pref1"
+            value="Slider Style 2"
+            checked={this.state.sliderPref === "Slider Style 2"}
+            onChange={this.onSliderValueChange}
+          />
+          <label>Slider Style 2</label>
+          <button
+            className="bg-black text-white p-2 px-4 rounded-lg"
+            type="submit"
+          >
             Submit
           </button>
-        </div>
+        </form>
       </div>
     );
   }
