@@ -5,7 +5,6 @@ import Qchoicetype2 from "./Components/Qchoicetype2";
 import Slidertype1 from "./Components/Slidertype1";
 import Slidertype2 from "./Components/Slidertype2";
 import Opentype from "./Components/Opentype";
-import history from "./history";
 import Firebase from "./firebase";
 
 class App extends Component {
@@ -67,13 +66,13 @@ class App extends Component {
     const sliderChoice = this.state.sliderPref;
     const showThankYouMessage = this.state.isSubmitted;
     let mcqComponent, sliderComponent, thankYouComponent, submitButton;
-    if (mcqChoice === "mcq style 1") {
+    if (mcqChoice === "MCQ Style 1") {
       mcqComponent = <Qchoicetype1 />;
     } else {
       mcqComponent = <Qchoicetype2 />;
     }
 
-    if (sliderChoice === "Slider Style 1") {
+    if (sliderChoice === "Slider with Step") {
       sliderComponent = <Slidertype1 />;
     } else {
       sliderComponent = <Slidertype2 />;
@@ -90,7 +89,6 @@ class App extends Component {
         <button
           className="bg-black text-white p-3 px-6 rounded-lg mt-12"
           type="submit"
-          onClick={() => history.push("/thanks")}
         >
           Submit
         </button>
