@@ -7,8 +7,6 @@ import Slidertype2 from "./Components/Slidertype2";
 import Opentype from "./Components/Opentype";
 import Firebase from "./firebase";
 
-function threeQuestions(state) {}
-
 class App extends Component {
   constructor() {
     super();
@@ -21,8 +19,8 @@ class App extends Component {
     this.onMcqValueChange = this.onMcqValueChange.bind(this);
     this.onOverallValueChange = this.onOverallValueChange.bind(this);
 
-    this.formSubmit = this.formSubmit.bind(this);
-    this.mcqFormSubmit = this.mcqFormSubmit.bind(this);
+    // this.formSubmit = this.formSubmit.bind(this);
+    // this.mcqFormSubmit = this.mcqFormSubmit.bind(this);
     this.finalFormSubmit = this.finalFormSubmit.bind(this);
   }
   onSliderValueChange(event) {
@@ -51,14 +49,14 @@ class App extends Component {
     };
     itemsRef.push(Preferences);
   }
-  mcqFormSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.mcqPref);
-  }
-  formSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.sliderPref);
-  }
+  // mcqFormSubmit(event) {
+  //   event.preventDefault();
+  //   console.log(this.state.mcqPref);
+  // }
+  // formSubmit(event) {
+  //   event.preventDefault();
+  //   console.log(this.state.sliderPref);
+  // }
   render() {
     const mcqChoice = this.state.mcqPref;
     const sliderChoice = this.state.sliderPref;
@@ -75,8 +73,8 @@ class App extends Component {
       sliderComponent = <Slidertype2 />;
     }
     return (
-      <div className="mx-auto max-w-4xl mt-16">
-        <header>
+      <>
+        <header className="mx-auto max-w-4xl mt-16">
           <div>
             <h1 className="text-2xl font-bold mb-4">
               Screen Time Input Preference feedback - Shreyas's Master's Thesis
@@ -99,119 +97,152 @@ class App extends Component {
               <b>
                 Note - We are not collecting information about your screen time,
                 but only the your question preferences. Feel free to answer
-                answer them.
+                them.
               </b>
             </p>
           </div>
         </header>
-        <div className="font-medium text-xl mx-auto max-w-4xl mt-24">
-          <h3>Which of these two questions types do you prefer? </h3>
+
+        <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+          1. Which of these two multiple correct choices questions do you
+          prefer?{" "}
+        </h3>
+
+        <div className="mx-auto max-w-4xl mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
+            <Qchoicetype1 />
+            <Qchoicetype2 />
+          </div>
+
+          <form onSubmit={this.mcqFormSubmit}>
+            <div className="md:grid md:grid-cols-2 gap-6 gap-y-16 my-8">
+              <label for="male">
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="MCQ Style 1"
+                  checked={this.state.mcqPref === "MCQ Style 1"}
+                  onChange={this.onMcqValueChange}
+                  className="mr-2"
+                />
+                MCQ Style 1
+              </label>
+
+              <label for="male">
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="MCQ Style 2"
+                  checked={this.state.mcqPref === "MCQ Style 2"}
+                  onChange={this.onMcqValueChange}
+                  className="mr-2"
+                />
+                MCQ Style 2
+              </label>
+            </div>
+          </form>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
-          <Qchoicetype1 />
-          <Qchoicetype2 />
+        <div className="mx-auto max-w-4xl mt-16">
+          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+            2. Which of these two slider type questions do you prefer?{" "}
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
+            <Slidertype1 />
+            <Slidertype2 />
+          </div>
+
+          <form onSubmit={this.formSubmit}>
+            <div className="md:grid md:grid-cols-2 gap-6 gap-y-16 my-8">
+              <label>
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="Slider Style 1"
+                  checked={this.state.sliderPref === "Slider Style 1"}
+                  onChange={this.onSliderValueChange}
+                  className="mr-2"
+                />
+                Slider with Step
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="Slider Style 2"
+                  checked={this.state.sliderPref === "Slider Style 2"}
+                  onChange={this.onSliderValueChange}
+                  className="mr-2"
+                />
+                Normal Slider
+              </label>
+            </div>
+          </form>
         </div>
-        <div className="flex flex-row mx-auto max-w-4xl">
-          <form onSubmit={this.mcqFormSubmit}>
-            <input
-              type="radio"
-              name="pref1"
-              value="mcq style 1"
-              checked={this.state.mcqPref === "mcq style 1"}
-              onChange={this.onMcqValueChange}
-            />
-            <label for="male">mcq style 1</label>
-            <input
-              type="radio"
-              name="pref1"
-              value="mcq style 2"
-              checked={this.state.mcqPref === "mcq style 2"}
-              onChange={this.onMcqValueChange}
-            />
-            <label for="male">mcq style 2</label>
+
+        <div className="mx-auto max-w-6xl mt-16 mb-24">
+          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+            3. Which of these three question types do you prefer?{" "}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-16 my-8">
+            <div>{mcqComponent}</div>
+            <div>{sliderComponent}</div>
+            <div>
+              <Opentype />
+            </div>
+          </div>
+
+          <form onSubmit={this.finalFormSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-16 my-8">
+              <label>
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="MCQ Type"
+                  checked={this.state.overAllPref === "MCQ Type"}
+                  onChange={this.onOverallValueChange}
+                  className="mr-2"
+                />
+                MCQ Type
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="Slider Type"
+                  checked={this.state.overAllPref === "Slider Type"}
+                  onChange={this.onOverallValueChange}
+                  className="mr-2"
+                />
+                Slider Type
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="pref1"
+                  value="Open-Ended Type"
+                  checked={this.state.overAllPref === "Open-Ended Type"}
+                  onChange={this.onOverallValueChange}
+                  className="mr-2"
+                />
+                Open-Ended type
+              </label>
+            </div>
+
+            <br />
             <button
-              className="bg-black text-white p-2 px-4 rounded-lg"
+              className="bg-black text-white p-3 px-6 rounded-lg mt-12"
               type="submit"
             >
               Submit
             </button>
           </form>
         </div>
-
-        <div className="font-medium text-xl mx-auto max-w-4xl mt-24">
-          <h3>Which of these two questions types do you prefer? </h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
-          <Slidertype1 />
-          <Slidertype2 />
-        </div>
-
-        <form onSubmit={this.formSubmit}>
-          <input
-            type="radio"
-            name="pref1"
-            value="Slider Style 1"
-            checked={this.state.sliderPref === "Slider Style 1"}
-            onChange={this.onSliderValueChange}
-          />
-          <label>Slider Style 1</label>
-          <input
-            type="radio"
-            name="pref1"
-            value="Slider Style 2"
-            checked={this.state.sliderPref === "Slider Style 2"}
-            onChange={this.onSliderValueChange}
-          />
-          <label>Slider Style 2</label>
-          <button
-            className="bg-black text-white p-2 px-4 rounded-lg"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
-          <div>{mcqComponent}</div>
-          <div>{sliderComponent}</div>
-          <div>
-            <Opentype />
-          </div>
-        </div>
-        <form onSubmit={this.finalFormSubmit}>
-          <input
-            type="radio"
-            name="pref1"
-            value="MCQ Style"
-            checked={this.state.overAllPref === "MCQ Style"}
-            onChange={this.onOverallValueChange}
-          />
-          <label>MCQ Style</label>
-          <input
-            type="radio"
-            name="pref1"
-            value="Slider Style"
-            checked={this.state.overAllPref === "Slider Style"}
-            onChange={this.onOverallValueChange}
-          />
-          <label>Slider Style</label>
-          <input
-            type="radio"
-            name="pref1"
-            value="Open Style"
-            checked={this.state.overAllPref === "Open Style"}
-            onChange={this.onOverallValueChange}
-          />
-          <label>Open Style</label>
-          <button
-            className="bg-black text-white p-2 px-4 rounded-lg"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+      </>
     );
   }
 }
