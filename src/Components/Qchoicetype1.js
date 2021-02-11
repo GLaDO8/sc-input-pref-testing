@@ -4,68 +4,102 @@ class Qchoicetype1 extends Component {
   render() {
     return (
       <div>
-        <div className="rounded-lg bg-white shadow-lg p-4">
+        <div className="rounded-lg bg-white shadow-lg p-4 h-96">
           <div className="flex flex-row justify-between">
             <form>
-              <p className="mb-8">
+              <p className="text-lg font-medium mb-2">MCQ Style 1</p>
+              <p className="mb-4 text-lg">
                 How much time in a day do you spend on your smartphone?
               </p>
               <input
                 type="radio"
-                id="onetwo"
+                name="qusage1"
+                value="0-1 Hour"
+                id="zeroone"
+                className="mr-2"
+              />
+              <label for="zeroone">0-1 Hour</label>
+              <br />
+              <input
+                type="radio"
                 name="qusage1"
                 value="1-2 Hours"
-                className="rounded-lg p-2 bg-gray-100 border-gray-200 border-2"
+                id="onetwo"
+                className="mr-2"
               />
-              <label for="male">1-2 Hours</label>
+              <label for="onetwo">1-2 Hours</label>
               <br />
               <input
                 type="radio"
-                id="twothree"
                 name="qusage1"
                 value="2-3 Hours"
+                id="twothree"
+                className="mr-2"
               />
-              <label for="female">2-3 Hours</label>
+              <label for="twothree">2-3 Hours</label>
               <br />
               <input
                 type="radio"
-                id="threefour"
                 name="qusage1"
                 value="3-4 Hours"
+                id="threefour"
+                className="mr-2"
               />
-              <label for="other">3-4 Hours</label>
+              <label for="threefour">3-4 Hours</label>
               <br />
               <input
                 type="radio"
-                id="fourfive"
                 name="qusage1"
                 value="4-5 Hours"
+                id="fourfive"
+                className="mr-2"
               />
-              <label for="other">4-5 Hours</label>
+              <label for="fourfive">4-5 Hours</label>
               <br />
               <input
                 type="radio"
-                id="fivesix"
                 name="qusage1"
                 value="5-6 Hours"
+                id="fivesix"
+                className="mr-2"
               />
-              <label for="other">5-6 Hours</label>
+              <label for="fivesix">5-6 Hours</label>
               <br />
               <input
                 type="radio"
-                id="sixseven"
                 name="qusage1"
                 value="6-7 Hours"
+                id="sixseven"
+                className="mr-2"
               />
-              <label for="other">6-7 Hours</label>
+              <label for="sixseven">6-7 Hours</label>
               <br />
               <input
                 type="radio"
-                id="seveneight"
                 name="qusage1"
                 value="7-8 Hours"
+                id="seveneight"
+                className="mr-2"
               />
-              <label for="other">7-8 Hours</label>
+              <label for="seveneight">7-8 Hours</label>
+              <br />
+              <input
+                type="radio"
+                name="qusage1"
+                value="8-9 Hours"
+                id="eightnine"
+                className="mr-2"
+              />
+              <label for="eightnine">8-9 Hours</label>
+              <br />
+              <input
+                type="radio"
+                name="qusage1"
+                value="9-10 Hours"
+                id="nineten"
+                className="mr-2"
+              />
+              <label for="nineten">9-10 Hours</label>
             </form>
           </div>
         </div>
