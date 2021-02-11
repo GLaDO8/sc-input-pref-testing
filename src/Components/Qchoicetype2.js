@@ -11,25 +11,15 @@ class Qchoicetype2 extends Component {
               <p className="mb-4 text-lg">
                 How much time in a day do you spend on your smartphone?
               </p>
-              <label>
-                <input
-                  type="radio"
-                  name="qusage2"
-                  value="0-1 Hour"
-                  className="mr-2"
-                />
-                0-1 Hour
-              </label>
-              <br />
 
               <label>
                 <input
                   type="radio"
                   name="qusage2"
-                  value="1-2 Hours"
+                  value="0-2 Hours"
                   className="mr-2"
                 />
-                1-2 Hours
+                0-2 Hours
               </label>
               <br />
 
