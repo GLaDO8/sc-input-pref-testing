@@ -5,6 +5,7 @@ import Qchoicetype2 from "./Components/Qchoicetype2";
 import Slidertype1 from "./Components/Slidertype1";
 import Slidertype2 from "./Components/Slidertype2";
 import Opentype from "./Components/Opentype";
+import history from "./history";
 import Firebase from "./firebase";
 
 class App extends Component {
@@ -65,7 +66,7 @@ class App extends Component {
     const mcqChoice = this.state.mcqPref;
     const sliderChoice = this.state.sliderPref;
     const showThankYouMessage = this.state.isSubmitted;
-    let mcqComponent, sliderComponent, thankYouComponent;
+    let mcqComponent, sliderComponent, thankYouComponent, submitButton;
     if (mcqChoice === "mcq style 1") {
       mcqComponent = <Qchoicetype1 />;
     } else {
@@ -82,6 +83,17 @@ class App extends Component {
         <h3 className="text-lg font-bold mt-8">
           Thank you for Helping me out!
         </h3>
+      );
+    }
+    if (showThankYouMessage === "No") {
+      submitButton = (
+        <button
+          className="bg-black text-white p-3 px-6 rounded-lg mt-12"
+          type="submit"
+          onClick={() => history.push("/thanks")}
+        >
+          Submit
+        </button>
       );
     }
 
@@ -250,12 +262,7 @@ class App extends Component {
             </div>
 
             <br />
-            <button
-              className="bg-black text-white p-3 px-6 rounded-lg mt-12"
-              type="submit"
-            >
-              Submit
-            </button>
+            <div>{submitButton}</div>
           </form>
           <div>{thankYouComponent}</div>
         </div>
