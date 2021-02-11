@@ -84,6 +84,7 @@ class App extends Component {
         </h3>
       );
     }
+
     return (
       <div className="px-4">
         <header className="mx-auto max-w-4xl mt-16">
@@ -116,7 +117,7 @@ class App extends Component {
 
         <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
           1. Which of these two multiple correct choices questions do you
-          prefer?{" "}
+          prefer? (REQUIRED)
         </h3>
 
         <div className="mx-auto max-w-4xl mt-8">
@@ -135,6 +136,7 @@ class App extends Component {
                   checked={this.state.mcqPref === "MCQ Style 1"}
                   onChange={this.onMcqValueChange}
                   className="mr-2"
+                  required="required"
                 />
                 MCQ Style 1
               </label>
@@ -156,7 +158,8 @@ class App extends Component {
 
         <div className="mx-auto max-w-4xl mt-16">
           <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
-            2. Which of these two slider type questions do you prefer?{" "}
+            2. Which of these two slider type questions do you prefer?
+            (REQUIRED)
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-8 my-8">
@@ -174,6 +177,7 @@ class App extends Component {
                   checked={this.state.sliderPref === "Slider with Step"}
                   onChange={this.onSliderValueChange}
                   className="mr-2"
+                  required="required"
                 />
                 Slider with Step
               </label>
@@ -195,7 +199,7 @@ class App extends Component {
 
         <div className="mx-auto max-w-6xl mt-16 mb-24">
           <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
-            3. Which of these three question types do you prefer?{" "}
+            3. Which of these three question types do you prefer? (REQUIRED)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-8 my-8">
             <div>{mcqComponent}</div>
@@ -215,6 +219,7 @@ class App extends Component {
                   checked={this.state.overAllPref === "MCQ Type"}
                   onChange={this.onOverallValueChange}
                   className="mr-2"
+                  required="required"
                 />
                 MCQ Type
               </label>
