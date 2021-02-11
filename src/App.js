@@ -14,6 +14,7 @@ class App extends Component {
       sliderPref: "",
       mcqPref: "",
       overAllPref: "",
+      isSubmitted: "No",
     };
     this.onSliderValueChange = this.onSliderValueChange.bind(this);
     this.onMcqValueChange = this.onMcqValueChange.bind(this);
@@ -48,6 +49,9 @@ class App extends Component {
       finalChoice: this.state.overAllPref,
     };
     itemsRef.push(Preferences);
+    this.setState({
+      isSubmitted: "Yes",
+    });
   }
   // mcqFormSubmit(event) {
   //   event.preventDefault();
@@ -60,7 +64,8 @@ class App extends Component {
   render() {
     const mcqChoice = this.state.mcqPref;
     const sliderChoice = this.state.sliderPref;
-    let mcqComponent, sliderComponent;
+    const showThankYouMessage = this.state.isSubmitted;
+    let mcqComponent, sliderComponent, thankYouComponent;
     if (mcqChoice === "mcq style 1") {
       mcqComponent = <Qchoicetype1 />;
     } else {
@@ -72,8 +77,15 @@ class App extends Component {
     } else {
       sliderComponent = <Slidertype2 />;
     }
+    if (showThankYouMessage === "Yes") {
+      thankYouComponent = (
+        <h3 className="text-lg font-bold mt-8">
+          Thank you for Helping me out!
+        </h3>
+      );
+    }
     return (
-      <>
+      <div className="px-4">
         <header className="mx-auto max-w-4xl mt-16">
           <div>
             <h1 className="text-2xl font-bold mb-4">
@@ -89,34 +101,33 @@ class App extends Component {
             <br />
             <br />
             <p>
-              You'll be presented with a few question types. Let us know which
+              You will be presented with a few question types. Let us know which
               one you prefer.
             </p>
             <br />
             <p>
               <b>
                 Note - We are not collecting information about your screen time,
-                but only the your question preferences. Feel free to answer
-                them.
+                but only your question preferences. So feel free to answer them.
               </b>
             </p>
           </div>
         </header>
 
-        <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+        <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
           1. Which of these two multiple correct choices questions do you
           prefer?{" "}
         </h3>
 
         <div className="mx-auto max-w-4xl mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-8 my-8">
             <Qchoicetype1 />
             <Qchoicetype2 />
           </div>
 
           <form onSubmit={this.mcqFormSubmit}>
-            <div className="md:grid md:grid-cols-2 gap-6 gap-y-16 my-8">
-              <label for="male">
+            <div className="md:grid md:grid-cols-2 gap-6 gap-y-8 my-8">
+              <label className="mr-6">
                 <input
                   type="radio"
                   name="pref1"
@@ -128,7 +139,7 @@ class App extends Component {
                 MCQ Style 1
               </label>
 
-              <label for="male">
+              <label>
                 <input
                   type="radio"
                   name="pref1"
@@ -144,23 +155,23 @@ class App extends Component {
         </div>
 
         <div className="mx-auto max-w-4xl mt-16">
-          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
             2. Which of these two slider type questions do you prefer?{" "}
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-16 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-8 my-8">
             <Slidertype1 />
             <Slidertype2 />
           </div>
 
           <form onSubmit={this.formSubmit}>
-            <div className="md:grid md:grid-cols-2 gap-6 gap-y-16 my-8">
-              <label>
+            <div className="md:grid md:grid-cols-2 gap-6 gap-y-8 my-8">
+              <label className="mr-6">
                 <input
                   type="radio"
                   name="pref1"
-                  value="Slider Style 1"
-                  checked={this.state.sliderPref === "Slider Style 1"}
+                  value="Slider with Step"
+                  checked={this.state.sliderPref === "Slider with Step"}
                   onChange={this.onSliderValueChange}
                   className="mr-2"
                 />
@@ -171,8 +182,8 @@ class App extends Component {
                 <input
                   type="radio"
                   name="pref1"
-                  value="Slider Style 2"
-                  checked={this.state.sliderPref === "Slider Style 2"}
+                  value="Normal Slider"
+                  checked={this.state.sliderPref === "Normal Slider"}
                   onChange={this.onSliderValueChange}
                   className="mr-2"
                 />
@@ -183,10 +194,10 @@ class App extends Component {
         </div>
 
         <div className="mx-auto max-w-6xl mt-16 mb-24">
-          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-24">
+          <h3 className="font-medium text-xl mx-auto max-w-4xl mt-36">
             3. Which of these three question types do you prefer?{" "}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-16 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-8 my-8">
             <div>{mcqComponent}</div>
             <div>{sliderComponent}</div>
             <div>
@@ -195,8 +206,8 @@ class App extends Component {
           </div>
 
           <form onSubmit={this.finalFormSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 gap-y-16 my-8">
-              <label>
+            <div className="md:grid md:grid-cols-3 gap-6 gap-y-8 my-8">
+              <label className="mr-6">
                 <input
                   type="radio"
                   name="pref1"
@@ -208,7 +219,7 @@ class App extends Component {
                 MCQ Type
               </label>
 
-              <label>
+              <label className="mr-6">
                 <input
                   type="radio"
                   name="pref1"
@@ -241,8 +252,9 @@ class App extends Component {
               Submit
             </button>
           </form>
+          <div>{thankYouComponent}</div>
         </div>
-      </>
+      </div>
     );
   }
 }
