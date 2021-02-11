@@ -4,7 +4,7 @@ class Qchoicetype1 extends Component {
   render() {
     return (
       <div>
-        <div className="rounded-lg bg-white shadow-lg p-4 h-96">
+        <div className="rounded-lg bg-blue-50 bg-opacity-75 shadow-lg p-4 h-96">
           <div className="flex flex-row justify-between">
             <form>
               <p className="text-lg font-medium mb-2">MCQ Style 1</p>

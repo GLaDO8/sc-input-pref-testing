@@ -18,7 +18,7 @@ class Slidertype1 extends Component {
     const { sliderValue } = this.state;
     return (
       <div>
-        <div className="rounded-lg bg-white shadow-lg p-4">
+        <div className="rounded-lg bg-blue-50 bg-opacity-75 shadow-lg p-4">
           <h2 className="text-xl font-medium mb-4">Slider with Step</h2>
           <p className="mb-8">
             How much time in a day do you spend on your smartphone?
