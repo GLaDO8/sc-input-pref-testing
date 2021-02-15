@@ -104,10 +104,18 @@ class App extends Component {
               Study
             </h1>
             <p>
-              We are trying to understand what kind of input methods do people
-              prefer when reporting their screen time on their smartphone. This
-              website will collect your preferences for input types, which will
-              help us in our study.
+              Thank you so much for taking some time out to click on the link!
+              My Master's thesis focuses on understanding how well family
+              members can estimate each others’ screen time on digital devices
+              and what factors affect the closeness of these estimates and
+              objectively collected screen time data
+            </p>
+            <br />
+            <p>
+              As part of the study, I want to see what kind of input methods do
+              people prefer when reporting their screen time on their
+              smartphone. This website will collect your preferences for input
+              types, which will help us in our study.
             </p>
             <br />
             <br />
@@ -138,7 +146,7 @@ class App extends Component {
 
           <form onSubmit={this.mcqFormSubmit}>
             <div className="md:grid md:grid-cols-2 gap-6 gap-y-8 my-8">
-              <label className="mr-6">
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
@@ -151,7 +159,7 @@ class App extends Component {
                 MCQ Style 1
               </label>
 
-              <label>
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
@@ -179,7 +187,7 @@ class App extends Component {
 
           <form onSubmit={this.formSubmit}>
             <div className="md:grid md:grid-cols-2 gap-6 gap-y-8 my-8">
-              <label className="mr-6">
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
@@ -192,7 +200,7 @@ class App extends Component {
                 Slider with Step
               </label>
 
-              <label>
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
@@ -221,7 +229,7 @@ class App extends Component {
 
           <form onSubmit={this.finalFormSubmit}>
             <div className="md:grid md:grid-cols-3 gap-6 gap-y-8 my-8">
-              <label className="mr-6">
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
@@ -234,19 +242,19 @@ class App extends Component {
                 MCQ Type
               </label>
 
-              <label className="mr-6">
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
                   value="Slider Type"
                   checked={this.state.overAllPref === "Slider Type"}
                   onChange={this.onOverallValueChange}
-                  className="mr-2"
+                  className="mr-4"
                 />
                 Slider Type
               </label>
 
-              <label>
+              <label className="mr-6 text-xl items-center flex">
                 <input
                   type="radio"
                   name="pref1"
